@@ -71,5 +71,9 @@ public class BigDecimalSummary {
 		// 避免输出科学计数法
 		System.out.println(new BigDecimal("100.000").stripTrailingZeros().toPlainString());
 
+		BigDecimal bigDecimal = new BigDecimal("0.01");
+		BigDecimal bigDecimalModify = new BigDecimal("100");
+		System.out.println(bigDecimalModify.multiply(bigDecimal).toString());
+		System.out.println(bigDecimalModify.multiply(bigDecimal).toBigInteger().toString());
 	}
 }
