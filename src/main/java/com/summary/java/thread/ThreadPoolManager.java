@@ -11,7 +11,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 线程池管理(线程统一调度管理)
+ * 
+ * @Description： 线程池管理(线程统一调度管理)
+ * 
+ * https://www.cnblogs.com/zzuli/p/9386463.html
+ * 
+ * @author [ Wenfeng.Huang@desay-svautomotive.com ] on [2019年12月24日上午11:34:51]
+ * @Modified By： [修改人] on [修改日期] for [修改说明]
+ *
  */
 public final class ThreadPoolManager {
 
@@ -111,6 +118,10 @@ public final class ThreadPoolManager {
 	}
 
 	protected boolean isTaskEnd() {
+		System.out.println("线程活跃数：" + mThreadPool.getActiveCount());
+		System.out.println("总线程数：" + mThreadPool.getTaskCount());
+		System.out.println("执行完成线程数：" + mThreadPool.getCompletedTaskCount());
+		System.out.println("当前排队线程数：" + mThreadPool.getQueue().size());
 		if (mThreadPool.getActiveCount() == 0) {
 			return true;
 		} else {
@@ -121,5 +132,129 @@ public final class ThreadPoolManager {
 	public void shutdown() {
 		mTaskQueue.clear();
 		mThreadPool.shutdown();
+	}
+
+	public static void main(String[] args) {
+		ThreadPoolManager pool = ThreadPoolManager.newInstance();
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		pool.addExecuteTask(() -> {
+			int i = 0;
+			while (true) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+				System.out.println(i);
+				i++;
+				if (i == 90) {
+					System.out.println("线程是否结束：" + pool.isTaskEnd());
+				} else if (i > 100) {
+					break;
+				}
+			}
+		});
+		System.out.println("线程是否结束：" + pool.isTaskEnd());
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+		}
+		System.out.println("线程是否结束：" + pool.isTaskEnd());
+		pool.shutdown();
+		System.out.println("线程是否结束：" + pool.isTaskEnd());
 	}
 }
