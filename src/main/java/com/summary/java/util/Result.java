@@ -10,7 +10,7 @@ import com.summary.java.base.enumerate.ErrorCode;
 /**
  * 
  * @Description： 返回结果
- * @author [ Wenfeng.Huang@desay-svautomotive.com ] on [2018年10月10日下午7:37:38]
+ * @author [ Wenfeng.Huang ] on [2018年10月10日下午7:37:38]
  * @Modified By： [修改人] on [修改日期] for [修改说明]
  *
  */
