@@ -2,7 +2,7 @@ package com.summary.java.base;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
+
 
 /**
  * 
@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class BigDecimalSummary {
 
-	@Test
+	
 	public void test() {
 		BigDecimal num1 = new BigDecimal(0.005);
 		BigDecimal num2 = new BigDecimal(1000000);

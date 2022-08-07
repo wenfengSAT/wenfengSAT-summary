@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Test;
+
 
 import com.alibaba.fastjson.JSON;
 import com.summary.java.base.enumerate.ErrorCode;
@@ -21,7 +21,7 @@ import com.summary.java.util.Result;
  */
 public class CompletableFutureTest {
 
-	@Test
+	
 	public void test1() throws Exception {
 		CompletableFuture<String> completableFuture = new CompletableFuture<String>();
 		Runnable runnable = new Runnable() {
@@ -44,7 +44,7 @@ public class CompletableFutureTest {
 		System.out.println("1x:  " + result);
 	}
 
-	@Test
+	
 	public void test2() throws Exception {
 		Result result = returnData();
 		System.err.println(JSON.toJSONString(result));

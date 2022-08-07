@@ -1,6 +1,6 @@
 package com.summary.java.base;
 
-import org.junit.Test;
+
 
 import cn.hutool.core.util.StrUtil;
 
@@ -14,7 +14,7 @@ import cn.hutool.core.util.StrUtil;
  */
 public class Placeholder {
 
-	@Test
+	
 	public void test() {
 		System.err.println(StrFormat("ID"));
 	}
