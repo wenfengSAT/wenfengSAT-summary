@@ -2,8 +2,9 @@ package com.summary.java.dynamic.run;
 
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.summary.java.util.Result;
+
+import cn.hutool.json.JSONUtil;
 
 
 
@@ -13,7 +14,7 @@ public class MainTest {
 		InvokeState processCode = InvokeState.valueOf("alipayPrecreate");
 		String requestStr = "{}";
 		Result result = InvokeStatePerformerFactory.getInstance().getInvokeStatePerformer(processCode).perform(requestStr);
-		System.out.println(JSONObject.toJSONString(result));
+		System.out.println(JSONUtil.toJsonStr(result));
 		//@Autowired
 		//private InvokeResultService invokeResultService;
 		//InvokeState1 processCode1 = InvokeState1.valueOf("alipayPrecreate");

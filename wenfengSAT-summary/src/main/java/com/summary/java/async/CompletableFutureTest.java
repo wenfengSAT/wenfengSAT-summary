@@ -7,9 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 
 
-import com.alibaba.fastjson.JSON;
 import com.summary.java.base.enumerate.ErrorCode;
 import com.summary.java.util.Result;
+
+import cn.hutool.json.JSONUtil;
 
 /**
  * 
@@ -47,7 +48,7 @@ public class CompletableFutureTest {
 	
 	public void test2() throws Exception {
 		Result result = returnData();
-		System.err.println(JSON.toJSONString(result));
+		System.err.println(JSONUtil.toJsonStr(result));
 	}
 
 	public Result returnData() {

@@ -1,5 +1,7 @@
 package com.summary.spring.validate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -18,7 +20,17 @@ import cn.hutool.core.collection.CollUtil;
 public class TestValidate {
 
 	public static void main(String[] args) {
-		
+
+		// testBean();
+		List<TestReq> reqList = new ArrayList<TestReq>();
+		TestReq req1 = new TestReq();
+		TestReq req2 = new TestReq();
+		reqList.add(req1);
+		reqList.add(req2);
+		System.err.println(getErrorMsg(reqList));
+	}
+
+	public static void testBean() {
 		TestReq req = new TestReq();
 		Set<ConstraintViolation<Object>> errors = Validation.buildDefaultValidatorFactory().getValidator()
 				.validate(req);
@@ -29,5 +41,30 @@ public class TestValidate {
 		errors.stream().forEach(error -> {
 			System.err.println(error.getMessage());
 		});
+	}
+
+	public static void testBeanList(List<TestReq> reqList) {
+		reqList.stream().forEach(req -> {
+			Set<ConstraintViolation<Object>> errors = Validation.buildDefaultValidatorFactory().getValidator()
+					.validate(req);
+			if (CollUtil.isEmpty(errors)) {
+				System.out.println("校验通过");
+				return;
+			}
+			errors.stream().forEach(error -> {
+				System.err.println(error.getMessage());
+			});
+		});
+	}
+
+	public static String getErrorMsg(List<TestReq> reqList) {
+		for (TestReq req : reqList) {
+			Set<ConstraintViolation<Object>> errors = Validation.buildDefaultValidatorFactory().getValidator()
+					.validate(req);
+			if (CollUtil.isNotEmpty(errors)) {
+				return CollUtil.getFirst(errors).getMessage();
+			}
+		}
+		return "";
 	}
 }

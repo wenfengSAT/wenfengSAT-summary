@@ -1,18 +1,16 @@
 package com.summary.java.dynamic.run;
 
-
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 
 import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -27,11 +25,11 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class InvokeResultService<T> {
 
-	//@Value("${dubbo.application.name}")
+	// @Value("${dubbo.application.name}")
 	private String applicationName;
-	//@Value("${dubbo.registry.id}")
+	// @Value("${dubbo.registry.id}")
 	private String registryId;
-	//@Value("${dubbo.registry.address}")
+	// @Value("${dubbo.registry.address}")
 	private String registryAddress;
 
 	/**
@@ -48,18 +46,18 @@ public class InvokeResultService<T> {
 	 */
 	public <T> T result(InvokeState1 invokeState, String requestStr) throws Exception {
 		long begin = System.currentTimeMillis();
-		JSONObject reqJson = JSON.parseObject(requestStr);
+		JSONObject reqJson = JSONUtil.parseObj(requestStr);
 		T result = null;
 		T service = getDubboService(invokeState.version, invokeState.service);
 		if (Objects.isNull(invokeState.reqObj)) {
 			result = ReflectUtil.invoke(service, invokeState.method);
 		} else {
-			Object reqObj = JSON.toJavaObject(reqJson, invokeState.reqObj);
+			Object reqObj = JSONUtil.toBean(reqJson, invokeState.reqObj);
 			result = ReflectUtil.invoke(service, invokeState.method, reqObj);
 		}
 		log.info("{} 耗时：{}", invokeState.desc, System.currentTimeMillis() - begin);
 		if (log.isDebugEnabled()) {
-			log.debug("{} result:{}", invokeState.method, JSON.toJSONString(result));
+			log.debug("{} result:{}", invokeState.method, JSONUtil.toJsonStr(result));
 		}
 		return result;
 	}
