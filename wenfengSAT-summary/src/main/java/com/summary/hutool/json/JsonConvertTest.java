@@ -1,4 +1,4 @@
-package com.summary.json;
+package com.summary.hutool.json;
 
 import java.util.List;
 
