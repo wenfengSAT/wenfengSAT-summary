@@ -1,0 +1,37 @@
+package com.summary.java.base.jdk8.lambda;
+
+import java.util.HashMap;
+import java.util.function.BiConsumer;
+
+/**
+ * 
+ * @Description： Lambda
+ * 
+ * @author [ Wenfeng.Huang ] on [2022年9月9日下午4:08:06]
+ * @Modified By： [修改人] on [修改日期] for [修改说明]
+ *
+ */
+public class Lambda5 {
+
+    //Pre-Defined Functional Interfaces
+    public static void main(String... args) {
+
+        //BiConsumer Example
+        BiConsumer<String,Integer> printKeyAndValue
+                = (key,value) -> System.out.println(key+"-"+value);
+
+        printKeyAndValue.accept("One",1);
+        printKeyAndValue.accept("Two",2);
+
+        System.out.println("##################");
+
+        //Java Hash-Map foreach supports BiConsumer
+        HashMap<String, Integer> dummyValues = new HashMap<>();
+        dummyValues.put("One", 1);
+        dummyValues.put("Two", 2);
+        dummyValues.put("Three", 3);
+
+        dummyValues.forEach((key,value) -> System.out.println(key+"-"+value));
+
+    }
+}
